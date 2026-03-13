@@ -26,6 +26,7 @@
 ".\objects\stm32f10x_usart.o"
 ".\objects\stm32f10x_wwdg.o"
 ".\objects\delay.o"
+".\objects\oled.o"
 ".\objects\main.o"
 ".\objects\stm32f10x_it.o"
 --strict --scatter ".\Objects\STM32-Security-Car.sct"
