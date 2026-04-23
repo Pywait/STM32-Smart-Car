@@ -27,8 +27,7 @@ uint8_t Key_GetNum(void)
 			KeyNum = 1;
 		}
 	}
-	
-	if (GPIO_ReadInputDataBit(KEY_PORT, KEY_PIN2) == 0)
+	else if (GPIO_ReadInputDataBit(KEY_PORT, KEY_PIN2) == 0)
 	{
 		Delay_ms(20);
 		if (GPIO_ReadInputDataBit(KEY_PORT, KEY_PIN2) == 0)

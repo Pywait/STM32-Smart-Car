@@ -18,7 +18,7 @@ void Motor_Init(void)
 	PWM_Init();	
 }
 
-void Motor_L_Setspeed(uint8_t speed)
+void Motor_L_Setspeed(int8_t speed)
 {
 	if (speed > 0)
 	{
@@ -40,13 +40,13 @@ void Motor_L_Setspeed(uint8_t speed)
 	}
 }
 
-void Motor_R_Setspeed(uint8_t speed)
+void Motor_R_Setspeed(int8_t speed)
 {
 	if (speed > 0)
 	{
 		GPIO_ResetBits(GPIOB, MOTOR_R1_PIN_B);
 		GPIO_SetBits(GPIOB, MOTOR_R2_PIN_B);
-		PWM_SetCompare1(speed);
+		PWM_SetCompare2(speed);
 	}
 	else if (speed < 0)
 	{
