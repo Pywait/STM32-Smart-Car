@@ -2,8 +2,9 @@
 #include "hardware.h"
 #include "Delay.h"
 
-uint8_t Ultrasonic_Flag;
-uint16_t Ultrasonic_Timer;
+uint8_t Ultrasonic_Flag = 0;
+uint16_t Ultrasonic_Timer = 0;
+uint32_t Ultrasonic_Distance = 0;
 
 void Ultrasonic_Init(void)
 {
@@ -17,7 +18,7 @@ void Ultrasonic_Init(void)
 	GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
 	GPIO_Init(ULTRASONIC_PORT, &GPIO_InitStructure);
 	
-	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IN_FLOATING;
+	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IPD;
 	GPIO_InitStructure.GPIO_Pin = ULTRASONIC_RX_PIN;
 	GPIO_Init(ULTRASONIC_PORT, &GPIO_InitStructure);
 	
@@ -58,19 +59,31 @@ void Ultrasonic_Init(void)
 	TIM_Cmd(TIM2, DISABLE);	
 }
 
-uint32_t Ultrasonic_Distance(void)
+uint32_t Ultrasonic_GetDistance(void)
 {
-	uint16_t Distance;
-	Ultrasonic_Init();
+	uint16_t TimeOut = 0;
+
+	Delay_ms(200);
 	GPIO_SetBits(ULTRASONIC_PORT, ULTRASONIC_TX_PIN);
 	Delay_us(15);
-	Distance = (Ultrasonic_Timer * 1000 + TIM_GetCounter(TIM2)) * 342.62 / 2000;	//us -> s ; m -> mm
-	return Distance;
+	GPIO_ResetBits(ULTRASONIC_PORT, ULTRASONIC_TX_PIN);
+
+	while (Ultrasonic_Flag == 0)
+	{
+		TimeOut++;
+		if (TimeOut > 10000)
+		{
+			return 0;
+		}
+	}
+	Ultrasonic_Flag = 0;
+
+	return Ultrasonic_Distance;
 }
 
 void EXTI15_10_IRQHandler(void)
 {
-	if (EXTI_GetITStatus(EXTI_Line11) == SET)
+	if (EXTI_GetITStatus(EXTI_Line11) != RESET)
 	{
 		if (Ultrasonic_Flag == 0)
 		{
@@ -82,6 +95,7 @@ void EXTI15_10_IRQHandler(void)
 		{
 			Ultrasonic_Flag = 0;
 			TIM_Cmd(TIM2, DISABLE);
+			Ultrasonic_Distance = (Ultrasonic_Timer * 1000 + TIM_GetCounter(TIM2)) * 342.62 / 2000;	//us -> s ; m -> mm
 		}
 		EXTI_ClearITPendingBit(EXTI_Line11);
 	}
@@ -89,7 +103,7 @@ void EXTI15_10_IRQHandler(void)
 
 void TIM2_IRQHandler(void)
 {
-	if (TIM_GetITStatus(TIM2, TIM_IT_Update) == SET)
+	if (TIM_GetITStatus(TIM2, TIM_IT_Update) != RESET)
 	{
 		Ultrasonic_Timer ++;
 		TIM_ClearITPendingBit(TIM2, TIM_IT_Update);
