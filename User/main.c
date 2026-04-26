@@ -7,8 +7,7 @@
 #include "Buzzer.h"
 #include "Motor.h"
 #include "Ultrasonic.h"
-
-uint8_t Key_Num;
+#include "PIR.h"
 
 int main(void)
 {
@@ -19,18 +18,30 @@ int main(void)
 	Motor_Init();
 	Ultrasonic_Init();
 	
-	uint8_t KeyNum;				//定义用于接收按键键码的变量
-	int8_t Speed;				//定义速度变量
+//	uint8_t KeyNum;				//定义用于接收按键键码的变量
+//	int8_t Speed;				//定义速度变量
 	
-	uint32_t Distance;
-
-	OLED_ShowString(1, 1, "Distance:");
+//	uint32_t Distance;
+//	uint8_t PIR_Num;
+	
+//	OLED_ShowString(1, 1, "Distance:");
 
 	while (1)
 	{
-		Distance = Ultrasonic_GetDistance();
-
-		OLED_ShowNum(2, 1, Distance, 5);
-		OLED_ShowString(2, 6, "mm");
+		Buzzer_OFF();
+//		PIR_Num = PIR_examine();
+//		
+//		if (PIR_Num == 1)
+//		{
+//			LED_ON();
+//		}
+//		else if (PIR_Num == 2)
+//		{
+//			LED_OFF();
+//		}
+//		else
+//		{
+//			Buzzer_ON();
+//		}
 	}
 }

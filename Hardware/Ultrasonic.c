@@ -63,7 +63,7 @@ uint32_t Ultrasonic_GetDistance(void)
 {
 	uint16_t TimeOut = 0;
 
-	Delay_ms(200);
+	Delay_ms(200);			//修改！
 	GPIO_SetBits(ULTRASONIC_PORT, ULTRASONIC_TX_PIN);
 	Delay_us(15);
 	GPIO_ResetBits(ULTRASONIC_PORT, ULTRASONIC_TX_PIN);

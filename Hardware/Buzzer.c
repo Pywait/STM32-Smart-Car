@@ -16,12 +16,12 @@ void Buzzer_Init(void)
 
 void Buzzer_ON(void)
 {
-	GPIO_ResetBits(BUZZER_PORT, BUZZER_PIN);
+	GPIO_SetBits(BUZZER_PORT, BUZZER_PIN);		//有源蜂鸣器。高电平响。
 }
 
 void Buzzer_OFF(void)
 {
-	GPIO_SetBits(BUZZER_PORT, BUZZER_PIN);
+	GPIO_ResetBits(BUZZER_PORT, BUZZER_PIN);
 }
 
 void Buzzer_Turn(void)
