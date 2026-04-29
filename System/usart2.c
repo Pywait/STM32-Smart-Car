@@ -103,11 +103,6 @@ void USART2_SendNumber(uint32_t Number, uint8_t Length)
 //	return USART_ReceiveData(USART2);
 //}
 
-uint8_t USART2_IsDataReceive(void)
-{
-	return USART_GetFlagStatus(USART2, USART_FLAG_RXNE);
-}
-
 uint8_t USART2_GetRxFlag(void)
 {
 	if (usart2_RxFlag == 1)
@@ -125,10 +120,10 @@ uint8_t USART2_GetRxData(void)
 
 void USART2_IRQHandler(void)
 {
-	if (USART_GetFlagStatus(USART2, USART_FLAG_RXNE) != RESET)
+	if (USART_GetITStatus(USART2, USART_IT_RXNE) != RESET)
 	{
 		usart2_RXData = USART_ReceiveData(USART2);
-		
+		usart2_RxFlag = 1;
 		USART_ClearITPendingBit(USART2, USART_IT_RXNE);
 	}
 }

@@ -1,6 +1,11 @@
 #ifndef __HARDWARE_H
 #define __HARDWARE_H
 
+#define usart2_GPIO_PORT GPIOA
+#define usart2_USART_PORT USART2
+#define usart2_TX_PIN GPIO_Pin_2
+#define usart2_RX_PIN GPIO_Pin_3
+
 #define KEY_PORT GPIOA
 #define KEY_PIN1 GPIO_Pin_2
 #define KEY_PIN2 GPIO_Pin_3
@@ -44,10 +49,5 @@
 #define ESP_GPIO0_PIN GPIO_Pin_12
 #define ESP_GPIO2_PIN GPIO_Pin_15
 #define ESP_RST_PIN GPIO_Pin_11
-
-#define usart2_GPIO_PORT GPIOA
-#define usart2_USART_PORT USART2
-#define usart2_TX_PIN GPIO_Pin_2
-#define usart2_RX_PIN GPIO_Pin_3
 
 #endif
