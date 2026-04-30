@@ -6,16 +6,16 @@
 #define usart2_TX_PIN GPIO_Pin_2
 #define usart2_RX_PIN GPIO_Pin_3
 
+#define LED_PORT GPIOB
+#define LED_PIN GPIO_Pin_14
+#define ISD_PORT GPIOA
+#define ISD_PIN GPIO_Pin_8
 #define KEY_PORT GPIOA
 #define KEY_PIN1 GPIO_Pin_2
 #define KEY_PIN2 GPIO_Pin_3
 
-#define LED_PORT GPIOB
-#define LED_PIN GPIO_Pin_14
 #define BUZZER_PORT GPIOB
 #define BUZZER_PIN GPIO_Pin_15
-#define ISD_PORT GPIOA
-#define ISD_PIN GPIO_Pin_8
 
 #define MOTOR_L_PWM_PIN_A GPIO_Pin_6	//A6
 #define MOTOR_R_PWM_PIN_A GPIO_Pin_7	//A7

@@ -18,18 +18,16 @@ void ISD_Init(void)
 	ISD_Playing = 0;
 }
 
-void ISD_PLAYE_ON(void)
+void ISD_PLAYL_ON(void)						//L高电平，E上升沿
 {
 	if (ISD_Playing == 0)
 	{
 		ISD_Playing = 1;
 		GPIO_SetBits(ISD_PORT, ISD_PIN);
-		Delay_ms(10);
-		GPIO_ResetBits(ISD_PORT, ISD_PIN);
 	}
 }
 
-void ISD_PLAYE_OFF(void)
+void ISD_PLAYL_OFF(void)
 {
 	GPIO_ResetBits(ISD_PORT, ISD_PIN);
 	ISD_Playing = 0;
