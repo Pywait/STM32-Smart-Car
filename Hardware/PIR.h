@@ -2,6 +2,6 @@
 #define __PIR_H
 
 void PIR_Init(void);
-uint16_t PIR_examine(void);
+uint8_t PIR_examine(void);
 
 #endif

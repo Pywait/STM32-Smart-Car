@@ -4,10 +4,10 @@
 
 void PIR_Init(void)
 {
-	RCC_APB2PeriphClockCmd(PIR_RCC_PORT, ENABLE);
+	RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOB, ENABLE);
 	
 	GPIO_InitTypeDef GPIO_InitStructure;
-	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IPD;		//下拉输入
+	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IPD;				//下拉输入
 	GPIO_InitStructure.GPIO_Pin = PIR_FRONT_PIN | PIR_BACK_PIN;
 	GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
 	GPIO_Init(PIR_PORT, &GPIO_InitStructure);
@@ -31,12 +31,12 @@ void PIR_Init(void)
 }
 
 /**
-	@brif 被动红外检测。
-	@retval 检测结果，uint16_t，1前方有人，2后方有人。
-	*/
-uint16_t PIR_examine(void)
+  * @brief  被动红外检测。
+  * @retval 检测结果，uint16_t，1前方有人，2后方有人。
+  */
+uint8_t PIR_examine(void)
 {
-	uint16_t PIR_examine_Num = 0;
+	uint8_t PIR_examine_Num = 0;
 	
 	if (GPIO_ReadInputDataBit(PIR_PORT, PIR_FRONT_PIN) == 1)
 	{

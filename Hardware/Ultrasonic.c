@@ -62,22 +62,24 @@ void Ultrasonic_Init(void)
 uint32_t Ultrasonic_GetDistance(void)
 {
 	uint16_t TimeOut = 0;
-
-	Delay_ms(200);			//修改！
+//	Ultrasonic_Timer = 0;
+//	Ultrasonic_Flag = 0;		//seek
+//	TIM_SetCounter(TIM2, 0);
+	
+//	Delay_ms(200);			//会阻塞，修改！
 	GPIO_SetBits(ULTRASONIC_PORT, ULTRASONIC_TX_PIN);
 	Delay_us(15);
 	GPIO_ResetBits(ULTRASONIC_PORT, ULTRASONIC_TX_PIN);
-
+	
 	while (Ultrasonic_Flag == 0)
 	{
-		TimeOut++;
+		TimeOut ++;
 		if (TimeOut > 10000)
 		{
+			Ultrasonic_Flag = 0;
 			return 0;
 		}
 	}
-	Ultrasonic_Flag = 0;
-
 	return Ultrasonic_Distance;
 }
 
@@ -88,14 +90,15 @@ void EXTI15_10_IRQHandler(void)
 		if (Ultrasonic_Flag == 0)
 		{
 			Ultrasonic_Flag = 1;
+			Ultrasonic_Timer = 0;
 			TIM_SetCounter(TIM2, 0);
 			TIM_Cmd(TIM2, ENABLE);
 		}
 		else if (Ultrasonic_Flag == 1)
 		{
-			Ultrasonic_Flag = 0;
 			TIM_Cmd(TIM2, DISABLE);
-			Ultrasonic_Distance = (Ultrasonic_Timer * 1000 + TIM_GetCounter(TIM2)) * 342.62 / 2000;	//us -> s ; m -> mm
+			Ultrasonic_Distance = (Ultrasonic_Timer * 1000 + TIM_GetCounter(TIM2)) * 343 / 2000;	//us -> s ; m -> mm ; 342.62
+			Ultrasonic_Flag = 0;
 		}
 		EXTI_ClearITPendingBit(EXTI_Line11);
 	}

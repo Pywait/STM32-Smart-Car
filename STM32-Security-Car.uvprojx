@@ -736,36 +736,6 @@
               <FilePath>.\HardWare\Buzzer.h</FilePath>
             </File>
             <File>
-              <FileName>Motor.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\HardWare\Motor.c</FilePath>
-            </File>
-            <File>
-              <FileName>Motor.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\HardWare\Motor.h</FilePath>
-            </File>
-            <File>
-              <FileName>PWM.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\HardWare\PWM.c</FilePath>
-            </File>
-            <File>
-              <FileName>PWM.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\HardWare\PWM.h</FilePath>
-            </File>
-            <File>
-              <FileName>Track.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\HardWare\Track.c</FilePath>
-            </File>
-            <File>
-              <FileName>Track.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\HardWare\Track.h</FilePath>
-            </File>
-            <File>
               <FileName>Ultrasonic.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\HardWare\Ultrasonic.c</FilePath>
@@ -784,6 +754,36 @@
               <FileName>PIR.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\HardWare\PIR.h</FilePath>
+            </File>
+            <File>
+              <FileName>PWM.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\HardWare\PWM.c</FilePath>
+            </File>
+            <File>
+              <FileName>PWM.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\HardWare\PWM.h</FilePath>
+            </File>
+            <File>
+              <FileName>Motor.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\HardWare\Motor.c</FilePath>
+            </File>
+            <File>
+              <FileName>Motor.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\HardWare\Motor.h</FilePath>
+            </File>
+            <File>
+              <FileName>Track.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\HardWare\Track.c</FilePath>
+            </File>
+            <File>
+              <FileName>Track.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\HardWare\Track.h</FilePath>
             </File>
             <File>
               <FileName>Position.c</FileName>

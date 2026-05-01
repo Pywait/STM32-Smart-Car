@@ -5,12 +5,13 @@ void PWM_Init(void)
 {
 	RCC_APB1PeriphClockCmd(RCC_APB1Periph_TIM3, ENABLE);
 	RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOA, ENABLE);
+	RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOB, ENABLE);
 	
-	GPIO_InitTypeDef GPIO_Structure;
-	GPIO_Structure.GPIO_Mode = GPIO_Mode_AF_PP;
-	GPIO_Structure.GPIO_Pin = MOTOR_L_PWM_PIN_A | MOTOR_R_PWM_PIN_A;
-	GPIO_Structure.GPIO_Speed = GPIO_Speed_50MHz;
-	GPIO_Init(GPIOA, &GPIO_Structure);
+	GPIO_InitTypeDef GPIO_InitStructure;			//GPIO_Structure;
+	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_AF_PP;
+	GPIO_InitStructure.GPIO_Pin = MOTOR_L_PWM_A_PIN | MOTOR_R_PWM_A_PIN;
+	GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
+	GPIO_Init(GPIOA, &GPIO_InitStructure);
 	
 	TIM_InternalClockConfig(TIM3);
 	
@@ -34,12 +35,12 @@ void PWM_Init(void)
 	TIM_Cmd(TIM3, ENABLE);	
 }
 
-void PWM_SetCompare1(uint16_t Compare1)
+void PWM_SetCompare1(uint8_t Compare1)			//可限幅
 {
 	TIM_SetCompare1(TIM3, Compare1);
 }
 
-void PWM_SetCompare2(uint16_t Compare2)
+void PWM_SetCompare2(uint8_t Compare2)
 {
 	TIM_SetCompare2(TIM3, Compare2);
 }

@@ -25,6 +25,11 @@ void ISD_PLAYL_ON(void)						//L高电平，E上升沿
 		ISD_Playing = 1;
 		GPIO_SetBits(ISD_PORT, ISD_PIN);
 	}
+	else if (ISD_Playing == 1)
+	{
+		GPIO_ResetBits(ISD_PORT, ISD_PIN);
+		GPIO_SetBits(ISD_PORT, ISD_PIN);
+	}
 }
 
 void ISD_PLAYL_OFF(void)

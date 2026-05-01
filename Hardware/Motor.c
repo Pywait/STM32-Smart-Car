@@ -9,10 +9,10 @@ void Motor_Init(void)
 	
 	GPIO_InitTypeDef GPIO_InitStructure;
 	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_PP;
-	GPIO_InitStructure.GPIO_Pin = MOTOR_L1_PIN_A | MOTOR_L2_PIN_A;
+	GPIO_InitStructure.GPIO_Pin = MOTOR_L1_A_PIN | MOTOR_L2_A_PIN;
 	GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
 	GPIO_Init(GPIOA, &GPIO_InitStructure);
-	GPIO_InitStructure.GPIO_Pin = MOTOR_R1_PIN_B | MOTOR_R2_PIN_B;
+	GPIO_InitStructure.GPIO_Pin = MOTOR_R1_B_PIN | MOTOR_R2_B_PIN;
 	GPIO_Init(GPIOB, &GPIO_InitStructure);
 	
 	PWM_Init();	
@@ -22,20 +22,20 @@ void Motor_L_Setspeed(int8_t speed)
 {
 	if (speed > 0)
 	{
-		GPIO_ResetBits(GPIOA, MOTOR_L1_PIN_A);
-		GPIO_SetBits(GPIOA, MOTOR_L2_PIN_A);
+		GPIO_ResetBits(GPIOA, MOTOR_L1_A_PIN);
+		GPIO_SetBits(GPIOA, MOTOR_L2_A_PIN);
 		PWM_SetCompare1(speed);
 	}
 	else if (speed < 0)
 	{
-		GPIO_SetBits(GPIOA, MOTOR_L1_PIN_A);
-		GPIO_ResetBits(GPIOA, MOTOR_L2_PIN_A);
+		GPIO_SetBits(GPIOA, MOTOR_L1_A_PIN);
+		GPIO_ResetBits(GPIOA, MOTOR_L2_A_PIN);
 		PWM_SetCompare1(-speed);
 	}
 	else 
 	{
-		GPIO_SetBits(GPIOA, MOTOR_L1_PIN_A);
-		GPIO_SetBits(GPIOA, MOTOR_L2_PIN_A);
+		GPIO_SetBits(GPIOA, MOTOR_L1_A_PIN);
+		GPIO_SetBits(GPIOA, MOTOR_L2_A_PIN);
 		PWM_SetCompare1(0);
 	}
 }
@@ -44,20 +44,20 @@ void Motor_R_Setspeed(int8_t speed)
 {
 	if (speed > 0)
 	{
-		GPIO_ResetBits(GPIOB, MOTOR_R1_PIN_B);
-		GPIO_SetBits(GPIOB, MOTOR_R2_PIN_B);
+		GPIO_ResetBits(GPIOB, MOTOR_R1_B_PIN);
+		GPIO_SetBits(GPIOB, MOTOR_R2_B_PIN);
 		PWM_SetCompare2(speed);
 	}
 	else if (speed < 0)
 	{
-		GPIO_SetBits(GPIOB, MOTOR_R1_PIN_B);
-		GPIO_ResetBits(GPIOB, MOTOR_R2_PIN_B);
-		PWM_SetCompare1(-speed);
+		GPIO_SetBits(GPIOB, MOTOR_R1_B_PIN);
+		GPIO_ResetBits(GPIOB, MOTOR_R2_B_PIN);
+		PWM_SetCompare2(-speed);
 	}
 	else 
 	{
-		GPIO_SetBits(GPIOB, MOTOR_R1_PIN_B);
-		GPIO_SetBits(GPIOB, MOTOR_R2_PIN_B);
-		PWM_SetCompare1(0);
+		GPIO_SetBits(GPIOB, MOTOR_R1_B_PIN);
+		GPIO_SetBits(GPIOB, MOTOR_R2_B_PIN);
+		PWM_SetCompare2(0);
 	}
 }
