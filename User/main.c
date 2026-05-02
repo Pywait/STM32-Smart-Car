@@ -8,6 +8,7 @@
 #include "Buzzer.h"
 #include "Ultrasonic.h"
 #include "PIR.h"
+#include "PWM.h"
 #include "Motor.h"
 //#include "Position.h"
 //#include "hardware.h"
@@ -16,13 +17,14 @@
 
 int main(void)
 {
-//	OLED_Init();
+	OLED_Init();
 	LED_Init();	
 	ISD_Init();
-	Key_Init();
+//	Key_Init();
 	Buzzer_Init();
 	Ultrasonic_Init();
 	PIR_Init();
+	PWM_Init();
 	Motor_Init();
 //	Position_Init();
 //	USART2_Init();
@@ -41,10 +43,6 @@ int main(void)
 //			Motor_L_Setspeed(Speed);
 //		else if (KeyNum == 2)
 //			Motor_R_Setspeed(Speed);
-		
-		Motor_L_Setspeed(20);
-		Delay_s(5);
-		
 //		Distance = Ultrasonic_GetDistance();
 		
 //		PIR_Num = PIR_examine();
@@ -55,5 +53,11 @@ int main(void)
 //			LED_ON();
 //		else if (PIR_Num == 2)
 //			LED_OFF();
+		
+		uint8_t duty1 = 90;     // 左电机
+		uint8_t duty2 = 90;     // 右电机
+		Motor_L_Setspeed(duty1);
+		Motor_R_Setspeed(duty2);
+
 	}
 }
