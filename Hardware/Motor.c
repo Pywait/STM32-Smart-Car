@@ -22,14 +22,14 @@ void Motor_L_Setspeed(int8_t speed)
 {
 	if (speed > 0)
 	{
-		GPIO_ResetBits(GPIOA, MOTOR_L1_A_PIN);
-		GPIO_SetBits(GPIOA, MOTOR_L2_A_PIN);
+		GPIO_SetBits(GPIOA, MOTOR_L1_A_PIN);
+		GPIO_ResetBits(GPIOA, MOTOR_L2_A_PIN);
 		PWM_SetCompare1(speed);
 	}
 	else if (speed < 0)
 	{
-		GPIO_SetBits(GPIOA, MOTOR_L1_A_PIN);
-		GPIO_ResetBits(GPIOA, MOTOR_L2_A_PIN);
+		GPIO_ResetBits(GPIOA, MOTOR_L1_A_PIN);
+		GPIO_SetBits(GPIOA, MOTOR_L2_A_PIN);
 		PWM_SetCompare1(-speed);
 	}
 	else 
@@ -44,14 +44,14 @@ void Motor_R_Setspeed(int8_t speed)
 {
 	if (speed > 0)
 	{
-		GPIO_ResetBits(GPIOB, MOTOR_R1_B_PIN);
-		GPIO_SetBits(GPIOB, MOTOR_R2_B_PIN);
+		GPIO_SetBits(GPIOB, MOTOR_R1_B_PIN);
+		GPIO_ResetBits(GPIOB, MOTOR_R2_B_PIN);
 		PWM_SetCompare2(speed);
 	}
 	else if (speed < 0)
 	{
-		GPIO_SetBits(GPIOB, MOTOR_R1_B_PIN);
-		GPIO_ResetBits(GPIOB, MOTOR_R2_B_PIN);
+		GPIO_ResetBits(GPIOB, MOTOR_R1_B_PIN);
+		GPIO_SetBits(GPIOB, MOTOR_R2_B_PIN);
 		PWM_SetCompare2(-speed);
 	}
 	else 
@@ -60,4 +60,17 @@ void Motor_R_Setspeed(int8_t speed)
 		GPIO_SetBits(GPIOB, MOTOR_R2_B_PIN);
 		PWM_SetCompare2(0);
 	}
+}
+
+void Car_Brake(void)		// 快速刹车
+{
+	GPIO_SetBits(GPIOA, MOTOR_L1_A_PIN | MOTOR_L2_A_PIN);
+	GPIO_SetBits(GPIOB, MOTOR_R1_B_PIN | MOTOR_R2_B_PIN);
+	PWM_SetCompare1(100);
+	PWM_SetCompare2(100);
+}
+void Car_Stop(void)			// 自由停止
+{
+	PWM_SetCompare1(0);
+	PWM_SetCompare2(0);
 }

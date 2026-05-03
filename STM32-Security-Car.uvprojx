@@ -776,6 +776,16 @@
               <FilePath>.\HardWare\Motor.h</FilePath>
             </File>
             <File>
+              <FileName>Car.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\HardWare\Car.c</FilePath>
+            </File>
+            <File>
+              <FileName>Car.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\Hardware\Car.h</FilePath>
+            </File>
+            <File>
               <FileName>Track.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\HardWare\Track.c</FilePath>

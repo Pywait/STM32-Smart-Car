@@ -10,6 +10,7 @@
 #include "PIR.h"
 #include "PWM.h"
 #include "Motor.h"
+#include "Track.h"
 //#include "Position.h"
 //#include "hardware.h"
 
@@ -26,6 +27,7 @@ int main(void)
 	PIR_Init();
 	PWM_Init();
 	Motor_Init();
+	Track_Init();
 //	Position_Init();
 //	USART2_Init();
 	
@@ -33,8 +35,6 @@ int main(void)
 //	uint32_t Distance;
 //	uint8_t PIR_Num;
 //	int8_t Speed = 50;
-	
-//	OLED_Clear();
 	
 	while (1)
 	{
@@ -45,19 +45,15 @@ int main(void)
 //			Motor_R_Setspeed(Speed);
 //		Distance = Ultrasonic_GetDistance();
 		
-//		PIR_Num = PIR_examine();
-//		Delay_ms(200);
-//		OLED_ShowString(1, 1, "PIR_Num:");
-//		OLED_ShowNum(1, 10, PIR_Num, 1);
-//		if (PIR_Num == 1)
-//			LED_ON();
-//		else if (PIR_Num == 2)
-//			LED_OFF();
-		
-		uint8_t duty1 = 90;     // 左电机
+		uint8_t duty1 = 80;     // 左电机
 		uint8_t duty2 = 90;     // 右电机
 		Motor_L_Setspeed(duty1);
 		Motor_R_Setspeed(duty2);
+		
+//		uint8_t code = Track_GetSensorCode();
+//		OLED_ShowString(1, 1, "Code:");
+//		OLED_ShowBinNum(2, 1, code, 5);
+//		Delay_ms(200);
 
 	}
 }

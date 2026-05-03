@@ -23,22 +23,21 @@
 #define PIR_FRONT_PIN GPIO_Pin_13
 #define PIR_BACK_PIN GPIO_Pin_12
 
+#define TRACK_PORT GPIOB
+#define TRACK_L1_PIN GPIO_Pin_5
+#define TRACK_L2_PIN GPIO_Pin_6
+#define TRACK_R1_PIN GPIO_Pin_9
+#define TRACK_R2_PIN GPIO_Pin_8
+#define TRACK_M_PIN GPIO_Pin_7
+#define POSITION_PORT GPIOA
+#define POSITION_PIN GPIO_Pin_1
+
 #define MOTOR_L_PWM_A_PIN GPIO_Pin_6	//A6
 #define MOTOR_R_PWM_A_PIN GPIO_Pin_7	//A7
 #define MOTOR_L1_A_PIN GPIO_Pin_4		//A4
 #define MOTOR_L2_A_PIN GPIO_Pin_5		//A5
 #define MOTOR_R1_B_PIN GPIO_Pin_0		//B0
 #define MOTOR_R2_B_PIN GPIO_Pin_1		//B1
-
-#define TRACK_PORT GPIOB
-#define TRACK_L1_PIN GPIO_Pin_5
-#define TRACK_L2_PIN GPIO_Pin_6
-#define TRACK_R1_PIN GPIO_Pin_7
-#define TRACK_R2_PIN GPIO_Pin_8
-#define TRACK_M_PIN GPIO_Pin_9
-
-#define POSITION_PORT GPIOA
-#define POSITION_PIN GPIO_Pin_1
 
 #define ESP_PORT GPIOA
 #define ESP_USART1_TX_PIN GPIO_Pin_9
