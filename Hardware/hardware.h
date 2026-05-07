@@ -11,8 +11,8 @@
 #define ISD_PORT GPIOA
 #define ISD_PIN GPIO_Pin_8
 #define KEY_PORT GPIOA
-#define KEY_PIN1 GPIO_Pin_2
-#define KEY_PIN2 GPIO_Pin_3
+#define KEY_PIN1 GPIO_Pin_11
+#define KEY_PIN2 GPIO_Pin_12
 #define BUZZER_PORT GPIOB
 #define BUZZER_PIN GPIO_Pin_15
 
@@ -24,11 +24,11 @@
 #define PIR_BACK_PIN GPIO_Pin_12
 
 #define TRACK_PORT GPIOB
-#define TRACK_L1_PIN GPIO_Pin_5
-#define TRACK_L2_PIN GPIO_Pin_6
-#define TRACK_R1_PIN GPIO_Pin_9
-#define TRACK_R2_PIN GPIO_Pin_8
-#define TRACK_M_PIN GPIO_Pin_7
+#define TRACK_L1_PIN GPIO_Pin_5     //左①
+#define TRACK_L2_PIN GPIO_Pin_6     //左②
+#define TRACK_R1_PIN GPIO_Pin_9     //左⑤
+#define TRACK_R2_PIN GPIO_Pin_8     //左④
+#define TRACK_M_PIN GPIO_Pin_7      //左③
 #define POSITION_PORT GPIOA
 #define POSITION_PIN GPIO_Pin_1
 
@@ -42,8 +42,5 @@
 #define ESP_PORT GPIOA
 #define ESP_USART1_TX_PIN GPIO_Pin_9
 #define ESP_USART1_RX_PIN GPIO_Pin_10
-#define ESP_GPIO0_PIN GPIO_Pin_12
-#define ESP_GPIO2_PIN GPIO_Pin_15
-#define ESP_RST_PIN GPIO_Pin_11
 
 #endif

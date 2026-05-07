@@ -32,7 +32,7 @@ void Motor_L_Setspeed(int8_t speed)
 		GPIO_SetBits(GPIOA, MOTOR_L2_A_PIN);
 		PWM_SetCompare1(-speed);
 	}
-	else 
+	else
 	{
 		GPIO_SetBits(GPIOA, MOTOR_L1_A_PIN);
 		GPIO_SetBits(GPIOA, MOTOR_L2_A_PIN);
@@ -54,7 +54,7 @@ void Motor_R_Setspeed(int8_t speed)
 		GPIO_SetBits(GPIOB, MOTOR_R2_B_PIN);
 		PWM_SetCompare2(-speed);
 	}
-	else 
+	else
 	{
 		GPIO_SetBits(GPIOB, MOTOR_R1_B_PIN);
 		GPIO_SetBits(GPIOB, MOTOR_R2_B_PIN);
@@ -62,14 +62,14 @@ void Motor_R_Setspeed(int8_t speed)
 	}
 }
 
-void Car_Brake(void)		// 快速刹车
+void Motor_Brake(void)		// 快速刹车
 {
 	GPIO_SetBits(GPIOA, MOTOR_L1_A_PIN | MOTOR_L2_A_PIN);
 	GPIO_SetBits(GPIOB, MOTOR_R1_B_PIN | MOTOR_R2_B_PIN);
 	PWM_SetCompare1(100);
 	PWM_SetCompare2(100);
 }
-void Car_Stop(void)			// 自由停止
+void Motor_Stop(void)			// 自由停止
 {
 	PWM_SetCompare1(0);
 	PWM_SetCompare2(0);
