@@ -33,7 +33,7 @@ void ESP_Init(void)
     
     // 初始化GPIO0、GPIO2和RST引脚
     GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_PP;
-    GPIO_InitStructure.GPIO_Pin = ESP_GPIO0_PIN | ESP_GPIO2_PIN | ESP_RST_PIN;
+//    GPIO_InitStructure.GPIO_Pin = ESP_GPIO0_PIN | ESP_GPIO2_PIN | ESP_RST_PIN;
     GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
     GPIO_Init(ESP_PORT, &GPIO_InitStructure);
     
@@ -57,14 +57,14 @@ uint8_t ESP_ReceiveByte(void)
     return USART_ReceiveData(USART1);
 }
 
-void ESP_Reset(void)
-{
-    // 拉低RST引脚复位
-    GPIO_ResetBits(ESP_PORT, ESP_RST_PIN);
-    // 使用Delay函数延时
-    Delay_ms(100);  // 100ms延时
-    // 拉高RST引脚
-    GPIO_SetBits(ESP_PORT, ESP_RST_PIN);
-    // 延时等待ESP-01S启动
-    Delay_ms(1000);  // 1秒延时
-}
+//void ESP_Reset(void)
+//{
+//    // 拉低RST引脚复位
+//    GPIO_ResetBits(ESP_PORT, ESP_RST_PIN);
+//    // 使用Delay函数延时
+//    Delay_ms(100);  // 100ms延时
+//    // 拉高RST引脚
+//    GPIO_SetBits(ESP_PORT, ESP_RST_PIN);
+//    // 延时等待ESP-01S启动
+//    Delay_ms(1000);  // 1秒延时
+//}

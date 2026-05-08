@@ -33,53 +33,53 @@ int main(void)
 //	Position_Init();
 //	USART2_Init();
 	
-//	uint8_t KeyNum;
+	uint8_t KeyNum;
 //	uint32_t Distance;
 //	uint8_t PIR_Num;
 //	int8_t Speed = 50;
 	
-//	OLED_ShowString(2, 1, "Distance:");
-//	OLED_ShowString(2, 14, "mm");
 	
 	while (1)
 	{
-//		KeyNum = Key_GetNum();
-//		if (KeyNum == 1)
-//		{
-//			LED_Turn();
-//			Buzzer_Turn();
-//		}
-//		else if (KeyNum == 2)
-//		{
-//			uint8_t duty1 = 100;     // 左电机
-//			uint8_t duty2 = 100;     // 右电机
-//			Motor_L_Setspeed(duty1);
-//			Motor_R_Setspeed(duty2);
-//		}
-//		
-//		Distance = Ultrasonic_GetDistance();
-//		OLED_ShowNum(2, 10, Distance, 4);
-//		
-//		PIR_Num = PIR_examine();
-//		OLED_ShowBinNum(4, 1, PIR_Num, 2);
-//		PIR_Num = PIR_examine();
-//		Delay_ms(200);
-//		OLED_ShowString(3, 1, "PIR_Num:");
-//		OLED_ShowNum(3, 10, PIR_Num, 1);
-//		
+//		LED_Turn();
+//		Buzzer_Turn();
+//		ISD_PLAYL_ON();
 //		uint8_t code = Track_GetSensorCode();
 //		OLED_ShowString(1, 1, "Code:");
 //		OLED_ShowBinNum(1, 6, code, 5);
-//		Delay_ms(200);
+//		OLED_ShowString(2, 1, "Distance:");
+//		OLED_ShowString(2, 14, "mm");
+//		Distance = Ultrasonic_GetDistance();
+//		OLED_ShowNum(2, 10, Distance, 4);
+//		PIR_Num = PIR_examine();
+//		OLED_ShowBinNum(3, 1, PIR_Num, 2);
+//		PIR_Num = PIR_examine();
+//		OLED_ShowString(3, 4, "PIR_Num:");
+//		OLED_ShowNum(3, 13, PIR_Num, 1);
 		
-//		Motor_L_Setspeed(-80);
+		
+		KeyNum = Key_GetNum();
+		if (KeyNum == 1)		{}
+		else if (KeyNum == 2)		{}
+//		
+//		Motor_L_Setspeed(80);
+//		Delay_s(3);
+//		Motor_Stop();
 
-//		GPIO_SetBits(GPIOA, MOTOR_L1_A_PIN);
-//		GPIO_ResetBits(GPIOA, MOTOR_L2_A_PIN);
+//		GPIO_ResetBits(GPIOA, MOTOR_L1_A_PIN);
+//		GPIO_SetBits(GPIOA, MOTOR_L2_A_PIN);
 //		PWM_SetCompare1(80);
-		
-		LED_OFF();
+//		GPIO_SetBits(GPIOB, MOTOR_R1_B_PIN);
+//		GPIO_ResetBits(GPIOB, MOTOR_R2_B_PIN);
+//		PWM_SetCompare2(80);
 
+		GPIO_ResetBits(GPIOA, MOTOR_L1_A_PIN);
+		GPIO_SetBits(GPIOA, MOTOR_L2_A_PIN);
+		PWM_SetCompare1(100);
+		GPIO_ResetBits(GPIOB, MOTOR_R1_B_PIN);
+		GPIO_SetBits(GPIOB, MOTOR_R2_B_PIN);
+		PWM_SetCompare2(100);
+			
 //		Car_GoForward(90);
 //		Delay_s(2);
 	}
