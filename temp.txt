@@ -1,0 +1,65 @@
+/*
+ * 临时注释存放文件
+ * 当认为代码中的注释多余时，可将其剪切到此文件保存
+ * 
+ * 格式：[文件名:行号] 原始注释内容
+ * ===========================================
+ */
+
+/* ====== User/main.c 中的原始测试代码 ====== */
+
+[main.c:5] //#include "usart2.h"
+
+[main.c:16] //#include "Position.h"
+
+[main.c:20] //uint8_t RxData;
+
+[main.c:35] //	Position_Init();
+[main.c:36] //	USART2_Init();
+
+[main.c:42] //uint32_t Distance;
+[main.c:43] //uint8_t PIR_Num;
+[main.c:44] //int8_t Speed = 50;
+
+[main.c:48-62] 原始测试代码：
+//		LED_Turn();									//LED
+//		Buzzer_Turn();								//蜂鸣器
+//		ISD_PLAYL_ON();								//语音
+//		uint8_t code = Track_GetSensorCode();		//循迹
+//		OLED_ShowString(1, 1, "Code:");
+//		OLED_ShowBinNum(1, 6, code, 5);
+//		OLED_ShowString(2, 1, "Distance:");			//测距
+//		OLED_ShowString(2, 14, "mm");
+//		Distance = Ultrasonic_GetDistance();
+//		OLED_ShowNum(2, 10, Distance, 4);
+//		PIR_Num = PIR_examine();					//热释电红外
+//		OLED_ShowBinNum(3, 1, PIR_Num, 2);
+//		PIR_Num = PIR_examine();
+//		OLED_ShowString(3, 4, "PIR_Num:");
+//		OLED_ShowNum(3, 13, PIR_Num, 1);
+
+[main.c:65-67] //		KeyNum = Key_GetNum();						//按键
+//		if (KeyNum == 1)		{}
+//		else if (KeyNum == 2)		{}
+
+[main.c:69-71] //		Motor_L_Setspeed(80);
+//		Delay_s(3);
+//		Motor_Stop();
+
+[main.c:73-85] //		GPIO_ResetBits(GPIOA, MOTOR_L1_A_PIN);
+//		GPIO_SetBits(GPIOA, MOTOR_L2_A_PIN);
+//		PWM_SetCompare1(80);
+//		GPIO_SetBits(GPIOB, MOTOR_R1_B_PIN);
+//		GPIO_ResetBits(GPIOB, MOTOR_R2_B_PIN);
+//		PWM_SetCompare2(80);
+//
+//		GPIO_ResetBits(GPIOA, MOTOR_L1_A_PIN);
+//		GPIO_SetBits(GPIOA, MOTOR_L2_A_PIN);
+//		PWM_SetCompare1(100);
+//		GPIO_ResetBits(GPIOB, MOTOR_R1_B_PIN);
+//		GPIO_SetBits(GPIOB, MOTOR_R2_B_PIN);
+//		PWM_SetCompare2(100);
+//			
+//	Car_GoForward(90);
+//	Delay_s(2);
+

@@ -1,5 +1,12 @@
 #include "stm32f10x.h"
 
+static volatile uint32_t tick_count = 0;
+
+uint32_t Delay_GetTick(void)
+{
+    return tick_count;
+}
+
 /**
   * @brief  微秒级延时
   * @param  xus 延时时长，范围：0~233015
@@ -24,6 +31,7 @@ void Delay_ms(uint32_t xms)
 	while(xms--)
 	{
 		Delay_us(1000);
+		tick_count++;
 	}
 }
  
