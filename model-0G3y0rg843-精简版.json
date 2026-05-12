@@ -1,0 +1,69 @@
+{
+  "properties": [
+    {
+      "identifier": "Battery",
+      "dataType": {
+        "type": "int32"
+      }
+    },
+    {
+      "identifier": "Location",
+      "dataType": {
+        "type": "string"
+      }
+    }
+  ],
+  "events": [
+    {
+      "identifier": "AlarmObstacle",
+      "eventType": "alert",
+      "outputData": [
+        {
+          "identifier": "info",
+          "dataType": {
+            "type": "string"
+          }
+        }
+      ]
+    },
+    {
+      "identifier": "AlarmPerson",
+      "eventType": "alert",
+      "outputData": [
+        {
+          "identifier": "info",
+          "dataType": {
+            "type": "string"
+          }
+        }
+      ]
+    }
+  ],
+  "services": [
+    {
+      "identifier": "PatrolMode",
+      "callType": "sync",
+      "input": [
+        {
+          "identifier": "mode",
+          "dataType": {
+            "type": "int32"
+          }
+        }
+      ]
+    },
+    {
+      "identifier": "RemoteCtrl",
+      "callType": "sync",
+      "input": [
+        {
+          "identifier": "cmd",
+          "dataType": {
+            "type": "string"
+          }
+        }
+      ]
+    }
+  ],
+  "combs": []
+}
