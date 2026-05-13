@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(python3 *)",
+      "Bash(xxd \"D:\\\\GitHub\\\\STM32-Security-Car-CC\\\\Hardware\\\\ESP.c\")",
+      "Bash(xxd \"D:\\\\GitHub\\\\STM32-Security-Car-CC\\\\STM32-Security-Car.uvprojx\")"
+    ]
+  }
+}

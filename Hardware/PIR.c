@@ -2,54 +2,51 @@
 #include "hardware.h"
 #include "Delay.h"
 
+#define PIR_LOCKOUT_MS 2500   // 2.5s 封锁时间
+
 void PIR_Init(void)
 {
 	RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOB, ENABLE);
-	
+
 	GPIO_InitTypeDef GPIO_InitStructure;
-	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IPD;				//下拉输入
+	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IPD;
 	GPIO_InitStructure.GPIO_Pin = PIR_FRONT_PIN | PIR_BACK_PIN;
 	GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
 	GPIO_Init(PIR_PORT, &GPIO_InitStructure);
-	
-//	GPIO_EXTILineConfig(GPIO_PortSourceGPIOB, GPIO_PinSource12 | GPIO_PinSource13);		//人体检测功能不需要中断
-//	
-//	EXTI_InitTypeDef EXTI_InitStructure;
-//	EXTI_InitStructure.EXTI_Line = EXTI_Line12 | EXTI_Line13;
-//	EXTI_InitStructure.EXTI_LineCmd = ENABLE;
-//	EXTI_InitStructure.EXTI_Mode = EXTI_Mode_Interrupt;
-//	EXTI_InitStructure.EXTI_Trigger = EXTI_Trigger_Rising;
-//	EXTI_Init(&EXTI_InitStructure);
-//	
-//	NVIC_PriorityGroupConfig(NVIC_PriorityGroup_2);
-//	NVIC_InitTypeDef NVIC_InitStructure;
-//	NVIC_InitStructure.NVIC_IRQChannel = EXTI15_10_IRQn;
-//	NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;
-//	NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 1;
-//	NVIC_InitStructure.NVIC_IRQChannelSubPriority = 2;
-//	NVIC_Init(&NVIC_InitStructure);
 }
 
 /**
-  * @brief  被动红外检测。
-  * @retval 检测结果，uint16_t，1前方有人，2后方有人。
+  * @brief  被动红外检测（含 2.5s 封锁期）。
+  * @retval 0=无人, 1=前方有人, 2=后方有人。
+  *         每次检测到触发后，2.5s 内不再响应，避免重复误报。
   */
 uint8_t PIR_examine(void)
 {
+	static uint32_t last_trig_time = 0;
+	uint32_t now = Delay_GetTick();
+
+	/* 2.5s 封锁期内不响应 */
+	if (now - last_trig_time < PIR_LOCKOUT_MS)
+		return 0;
+
 	uint8_t PIR_examine_Num = 0;
-	
+
 	if (GPIO_ReadInputDataBit(PIR_PORT, PIR_FRONT_PIN) == 1)
 	{
 		Delay_us(10);
-		if (GPIO_ReadInputDataBit(PIR_PORT, PIR_FRONT_PIN) == 1)
+		if (GPIO_ReadInputDataBit(PIR_PORT, PIR_FRONT_PIN) == 1) {
 			PIR_examine_Num = 1;
+			last_trig_time = now;
+		}
 	}
 	if (GPIO_ReadInputDataBit(PIR_PORT, PIR_BACK_PIN) == 1)
 	{
 		Delay_us(10);
-		if (GPIO_ReadInputDataBit(PIR_PORT, PIR_BACK_PIN) == 1)
+		if (GPIO_ReadInputDataBit(PIR_PORT, PIR_BACK_PIN) == 1) {
 			PIR_examine_Num = 2;
+			last_trig_time = now;
+		}
 	}
-	
+
 	return PIR_examine_Num;
 }

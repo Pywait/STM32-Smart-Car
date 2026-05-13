@@ -28,6 +28,7 @@ void ISD_PLAYL_ON(void)						//L高电平，E上升沿
 	else if (ISD_Playing == 1)
 	{
 		GPIO_ResetBits(ISD_PORT, ISD_PIN);
+		Delay_us(10);
 		GPIO_SetBits(ISD_PORT, ISD_PIN);
 	}
 }

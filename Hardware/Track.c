@@ -1,5 +1,6 @@
 #include "stm32f10x.h"                  // Device header
 #include "hardware.h"
+#include <stdio.h>
 
 #define BLACK_LEVEL 1                    // 黑线检测电平（高电平表示检测到黑线）
 
@@ -76,7 +77,6 @@ float Track_GetError(void)
         else return 0;                   // 初始状态
     }
     float error = (float)sum_weight / active_count;
-    last_error = error;
     return error;
 }
 

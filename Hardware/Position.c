@@ -35,7 +35,8 @@ uint16_t Position_Get(uint16_t TPNum)
 	}
 	if (lastState == 1 && GPIO_ReadInputDataBit(POSITION_PORT, POSITION_PIN) == 0)
 	{
-		if (GPIO_ReadInputDataBit(POSITION_PORT, POSITION_PIN) ==1)
+		Delay_us(20);
+		if (GPIO_ReadInputDataBit(POSITION_PORT, POSITION_PIN) == 0)
 		{
 			lastState = 0;
 		}
