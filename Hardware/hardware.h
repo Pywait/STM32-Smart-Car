@@ -1,11 +1,6 @@
 #ifndef __HARDWARE_H
 #define __HARDWARE_H
 
-#define usart2_GPIO_PORT GPIOA
-#define usart2_USART_PORT USART2
-#define usart2_TX_PIN GPIO_Pin_2
-#define usart2_RX_PIN GPIO_Pin_3
-
 #define LED_PORT GPIOB
 #define LED_PIN GPIO_Pin_14
 #define ISD_PORT GPIOA
@@ -23,12 +18,14 @@
 #define PIR_FRONT_PIN GPIO_Pin_13
 #define PIR_BACK_PIN GPIO_Pin_12
 
+// 从左到右物理布局：PB5(最左) PB6(左中) PB9(中间) PB8(右中) PB7(最右)
+// 权重分配：-2, -1, 0, 1, 2
 #define TRACK_PORT GPIOB
-#define TRACK_L1_PIN GPIO_Pin_5     //左①
-#define TRACK_L2_PIN GPIO_Pin_6     //左②
-#define TRACK_R1_PIN GPIO_Pin_9     //左⑤
-#define TRACK_R2_PIN GPIO_Pin_8     //左④
-#define TRACK_M_PIN GPIO_Pin_7      //左③
+#define TRACK_L1_PIN GPIO_Pin_5     //最左
+#define TRACK_L2_PIN GPIO_Pin_6     //左中
+#define TRACK_M_PIN  GPIO_Pin_9     //中间
+#define TRACK_R2_PIN GPIO_Pin_8     //右中
+#define TRACK_R1_PIN GPIO_Pin_7     //最右
 #define POSITION_PORT GPIOA
 #define POSITION_PIN GPIO_Pin_1
 
