@@ -18,14 +18,19 @@ void ISD_Init(void)
 	ISD_Playing = 0;
 }
 
-void ISD_PLAYL_ON(void)						// 高电平触发播放
+void ISD_PLAYL_ON(void)						//L高电平，E上升沿
 {
 	if (ISD_Playing == 0)
 	{
 		ISD_Playing = 1;
 		GPIO_SetBits(ISD_PORT, ISD_PIN);
 	}
-	// 已播放时保持高电平不变
+	else if (ISD_Playing == 1)
+	{
+		GPIO_ResetBits(ISD_PORT, ISD_PIN);
+		Delay_us(10);
+		GPIO_SetBits(ISD_PORT, ISD_PIN);
+	}
 }
 
 void ISD_PLAYL_OFF(void)

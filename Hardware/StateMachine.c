@@ -20,9 +20,6 @@ OperationMode current_mode = MODE_TRACKING;
 uint8_t alarm_active = 0;
 
 static uint8_t human_detected = 0;
-static char last_remote_cmd = 'S';
-
-void RemoteCtrl_SetCmd(char cmd) { last_remote_cmd = cmd; }
 
 void StateMachine_Init(void)
 {
@@ -221,7 +218,7 @@ static void TrackingMode(void)
 		if (sensor_code == 0x00 || sensor_code == 0x1F) {
 			Car_Brake();
 			OLED_ShowString(3, 1, "LOST/BRAKE");
-			OLED_ShowString(4, 1, "L:  0 R:  0");
+			OLED_ShowString(4, 1, "Safe");
 			return;
 		}
 
@@ -242,10 +239,7 @@ static void TrackingMode(void)
 		OLED_ShowString(3, 1, "Err:");
 		OLED_ShowNum(3, 5, (int16_t)(error * 10), 3);
 
-		OLED_ShowString(4, 1, "L:");
-		OLED_ShowNum(4, 3, left_speed, 2);
-		OLED_ShowString(4, 6, "R:");
-		OLED_ShowNum(4, 8, right_speed, 2);
+		OLED_ShowString(4, 1, "Safe");
 	}
 }
 
@@ -300,10 +294,8 @@ static void ObstacleAvoidanceMode(void)
 		if (obstacle_avoiding) {
 			if (now - avoid_start_time < 1500) {
 				Car_GoBackward(40);
-				OLED_ShowString(4, 1, "BACKING");
 			} else if (now - avoid_start_time < 2500) {
 				Car_SpinRight(50);
-				OLED_ShowString(4, 1, "SPIN R");
 			} else {
 				obstacle_avoiding = 0;
 				LED_OFF();
@@ -311,7 +303,6 @@ static void ObstacleAvoidanceMode(void)
 			}
 		} else {
 			Car_GoForward(BASE_SPEED);
-			OLED_ShowString(4, 1, "L:60 R:60");
 		}
 	}
 }
@@ -336,11 +327,6 @@ static void RemoteControlMode(void)
 		OLED_ShowNum(2, 5, pos, 2);
 		OLED_ShowChar(2, 7, '/');
 		OLED_ShowNum(2, 8, POSITION_MARKERS, 2);
-
-		OLED_ShowString(3, 1, "Cmd:");
-		OLED_ShowChar(3, 5, last_remote_cmd);
-
-		OLED_ShowString(4, 1, pir_state ? "Person!" : "Safe   ");
 
 		if (pir_state != 0) {
 			TriggerHumanAlarm();

@@ -3,24 +3,7 @@
     "allow": [
       "Bash(python3 *)",
       "Bash(xxd \"D:\\\\GitHub\\\\STM32-Security-Car-CC\\\\Hardware\\\\ESP.c\")",
-      "Bash(xxd \"D:\\\\GitHub\\\\STM32-Security-Car-CC\\\\STM32-Security-Car.uvprojx\")",
-      "Bash(xxd ESP.c)",
-      "Read(//d/Keil_v5/**)",
-      "Read(//d//**)",
-      "Read(//c//**)",
-      "Bash(env)",
-      "Bash(\"C:/Program Files \\(x86\\)/UV4/UV4\" -h)",
-      "Bash(\"C:/Program Files \\(x86\\)/UV4/UV4\")",
-      "Bash(ls /c/Keil*)",
-      "Bash(ls /d/Keil*)",
-      "Bash(reg.exe QUERY \"HKLM\\\\SOFTWARE\\\\Microsoft\\\\Windows\\\\CurrentVersion\\\\App Paths\\\\UV4.exe\")",
-      "Bash(reg.exe QUERY \"HKLM\\\\SOFTWARE\\\\Keil\")",
-      "Bash(cygpath -u \"C:\\\\Keil_v5\")",
-      "Bash(mount)",
-      "Bash(\"D:/Keil_v5/UV4/UV4.exe\" -b \"D:/GitHub/STM32-Security-Car-CC/STM32-Security-Car.uvprojx\" -o build.log)",
-      "Bash(echo \"EXIT: $?\")",
-      "Bash(claude --list-sessions)",
-      "Bash(claude --list-session)"
+      "Bash(xxd \"D:\\\\GitHub\\\\STM32-Security-Car-CC\\\\STM32-Security-Car.uvprojx\")"
     ]
   }
 }

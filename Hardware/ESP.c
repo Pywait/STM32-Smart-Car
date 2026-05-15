@@ -190,11 +190,11 @@ void ESP_SendAlarm(uint8_t type)
 {
 	if (type == 0x01) {
 		ESP_SendAT("AT+MQTTPUB=0,\"$sys/0G3y0rg843/Car2/thing/event/post\","
-			"\"{\\\"id\\\":\\\"124\\\",\\\"params\\\":{\\\"AlarmPerson\\\""
+			"\"{\\\"id\\\":\\\"124\\\"\\,\\\"params\\\":{\\\"AlarmPerson\\\""
 			":{\\\"value\\\":{\\\"info\\\":\\\"异常人员闯入\\\"}}}}\",0,0");
 	} else {
 		ESP_SendAT("AT+MQTTPUB=0,\"$sys/0G3y0rg843/Car2/thing/event/post\","
-			"\"{\\\"id\\\":\\\"123\\\",\\\"params\\\":{\\\"AlarmObstacle\\\""
+			"\"{\\\"id\\\":\\\"123\\\"\\,\\\"params\\\":{\\\"AlarmObstacle\\\""
 			":{\\\"value\\\":{\\\"info\\\":\\\"前方障碍物\\\"}}}}\",0,0");
 	}
 }
@@ -203,14 +203,11 @@ void ESP_SendAlarm(uint8_t type)
 void ESP_SendPosition(uint8_t idx, uint8_t total)
 {
 	ESP_SendString("AT+MQTTPUB=0,\"$sys/0G3y0rg843/Car2/thing/property/post\","
-		"\"{\\\"id\\\":\\\"125\\\",\\\"params\\\":{\\\"Location\\\""
+		"\"{\\\"id\\\":\\\"125\\\"\\,\\\"params\\\":{\\\"Location\\\""
 		":{\\\"value\\\":\\\"小车在");
-	char pos_num[4];
-	sprintf(pos_num, "%d", idx);
-	ESP_SendString((uint8_t*)pos_num);
+	ESP_SendByte('0' + idx);
 	ESP_SendString("与");
-	sprintf(pos_num, "%d", total);
-	ESP_SendString((uint8_t*)pos_num);
+	ESP_SendByte('0' + total);
 	ESP_SendString("之间\\\"}}}\",0,0\r\n");
 }
 
@@ -220,7 +217,7 @@ void ESP_SendBattery(uint8_t level)
 	char num[4];
 	sprintf(num, "%d", level);
 	ESP_SendString("AT+MQTTPUB=0,\"$sys/0G3y0rg843/Car2/thing/property/post\","
-		"\"{\\\"id\\\":\\\"126\\\",\\\"params\\\":{\\\"Battery\\\""
+		"\"{\\\"id\\\":\\\"126\\\"\\,\\\"params\\\":{\\\"Battery\\\""
 		":{\\\"value\\\":");
 	ESP_SendString((uint8_t*)num);
 	ESP_SendString("}}}\",0,0\r\n");
@@ -242,11 +239,11 @@ static void ParseMQTTLine(const char* line)
 			current_state = STATE_REMOTE_CONTROL;
 		}
 
-		if      (strstr(p, "\"F\"")) { Motor_L_Setspeed(80); Motor_R_Setspeed(80); RemoteCtrl_SetCmd('F'); }
-		else if (strstr(p, "\"B\"")) { Motor_L_Setspeed(-80); Motor_R_Setspeed(-80); RemoteCtrl_SetCmd('B'); }
-		else if (strstr(p, "\"L\"")) { Motor_L_Setspeed(-80); Motor_R_Setspeed(80); RemoteCtrl_SetCmd('L'); }
-		else if (strstr(p, "\"R\"")) { Motor_L_Setspeed(80); Motor_R_Setspeed(-80); RemoteCtrl_SetCmd('R'); }
-		else if (strstr(p, "\"S\"")) { Motor_L_Setspeed(0); Motor_R_Setspeed(0); RemoteCtrl_SetCmd('S'); }
+		if      (strstr(p, "\"F\"")) { Motor_L_Setspeed(80); Motor_R_Setspeed(80); }
+		else if (strstr(p, "\"B\"")) { Motor_L_Setspeed(-80); Motor_R_Setspeed(-80); }
+		else if (strstr(p, "\"L\"")) { Motor_L_Setspeed(-80); Motor_R_Setspeed(80); }
+		else if (strstr(p, "\"R\"")) { Motor_L_Setspeed(80); Motor_R_Setspeed(-80); }
+		else if (strstr(p, "\"S\"")) { Motor_L_Setspeed(0); Motor_R_Setspeed(0); }
 		return;
 	}
 
