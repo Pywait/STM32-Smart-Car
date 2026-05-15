@@ -1,16 +1,10 @@
 #include "stm32f10x.h"                  // Device header
 #include "hardware.h"
+#include <stdio.h>
 
 #define BLACK_LEVEL 1                    // 黑线检测电平（高电平表示检测到黑线）
 
-static const uint16_t track_pins[5] = {
-    TRACK_L1_PIN,                        // 最左传感器
-    TRACK_L2_PIN,                        // 左传感器
-    TRACK_M_PIN,                         // 中间传感器
-    TRACK_R2_PIN,                        // 右传感器
-    TRACK_R1_PIN                         // 最右传感器
-};
-
+// 权重数组：-2(最左) -1(左中) 0(中间) 1(右中) 2(最右)
 static const int8_t weights[5] = {-2, -1, 0, 1, 2}; // 位置权重：左负右正
 
 // PID控制参数
@@ -76,7 +70,6 @@ float Track_GetError(void)
         else return 0;                   // 初始状态
     }
     float error = (float)sum_weight / active_count;
-    last_error = error;
     return error;
 }
 
