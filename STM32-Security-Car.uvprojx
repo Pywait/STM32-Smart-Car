@@ -675,16 +675,6 @@
               <FileType>5</FileType>
               <FilePath>.\System\OLED_Font.h</FilePath>
             </File>
-            <File>
-              <FileName>usart2.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\System\usart2.c</FilePath>
-            </File>
-            <File>
-              <FileName>usart2.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\System\usart2.h</FilePath>
-            </File>
           </Files>
         </Group>
         <Group>
@@ -816,24 +806,14 @@
               <FilePath>.\HardWare\ESP.h</FilePath>
             </File>
             <File>
-              <FileName>LAlarm.c</FileName>
+              <FileName>StateMachine.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\HardWare\LAlarm.c</FilePath>
+              <FilePath>.\HardWare\StateMachine.c</FilePath>
             </File>
             <File>
-              <FileName>LAlarm.h</FileName>
+              <FileName>StateMachine.h</FileName>
               <FileType>5</FileType>
-              <FilePath>.\HardWare\LAlarm.h</FilePath>
-            </File>
-            <File>
-              <FileName>NAlarm.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\HardWare\NAlarm.c</FilePath>
-            </File>
-            <File>
-              <FileName>NAlarm.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\HardWare\NAlarm.h</FilePath>
+              <FilePath>.\HardWare\StateMachine.h</FilePath>
             </File>
           </Files>
         </Group>
