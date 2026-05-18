@@ -64,13 +64,13 @@ void ESP_SendBytes(uint8_t* data, uint16_t len)
 	for (uint16_t i = 0; i < len; i++) ESP_SendByte(data[i]);
 }
 
-void ESP_SendAT(const char* cmd)
+static void ESP_SendAT(const char* cmd)
 {
 	ESP_SendString((uint8_t*)cmd);
 	ESP_SendString((uint8_t*)"\r\n");
 }
 
-uint8_t ESP_WaitResp(const char* expect, uint32_t timeout_ms)
+static uint8_t ESP_WaitResp(const char* expect, uint32_t timeout_ms)
 {
 	uint32_t start = Delay_GetTick();
 	uint8_t data;
@@ -90,7 +90,7 @@ uint8_t ESP_WaitResp(const char* expect, uint32_t timeout_ms)
 	return 0;
 }
 
-void ESP_FlushRX(void)
+static void ESP_FlushRX(void)
 {
 	uint8_t d;
 	while (rx_buffer_get(&d));
